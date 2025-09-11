@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <% if(locals.genries) {%>
+            <% genries.map(gen=> {%>
+            <a href="/genre/<%=gen.name%>"><button>gen.name</button></a>
+            <%})%>
+    </body>
+</html>
