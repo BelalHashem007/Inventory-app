@@ -1,0 +1,8 @@
+<ul>
+  <% for (let i=0; i< books.length; i++){%>
+  <li>
+    Title:<%=books[i].title%>, Description:<%=books[i].description == '' ? "No description for this book" : books[i].description%>,
+    Rating:<%=books[i].rating%>.
+  </li>
+  <%}%>
+</ul>
