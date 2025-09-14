@@ -1,6 +1,8 @@
 const { Client } = require("pg");
 
 const SQL = `
+    DROP TABLE IF EXISTS book,genre,author,book_genre,book_author CASCADE;
+
     CREATE TABLE IF NOT EXISTS book(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         title VARCHAR(255),
@@ -10,12 +12,12 @@ const SQL = `
 
     CREATE TABLE IF NOT EXISTS genre(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR(255)
+        name VARCHAR(255) UNIQUE
     );
 
      CREATE TABLE IF NOT EXISTS author(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR(255)
+        name VARCHAR(255) UNIQUE
     );
 
     CREATE TABLE IF NOT EXISTS book_genre(

@@ -1,8 +1,9 @@
-<ul>
+<ul class="books">
   <% for (let i=0; i< books.length; i++){%>
-  <li>
-    Title:<%=books[i].title%>, Description:<%=books[i].description == '' ? "No description for this book" : books[i].description%>,
-    Rating:<%=books[i].rating%>.
+  <li class="book">
+    <div class="bookTitle"><strong>Title</strong>: <a href="/book/<%=books[i].id%>" class="titlePage"><%=books[i].title%>.</a></div>
+    <div class="bookRating"><strong>Rating</strong>: <%=books[i].rating%></div>
+    <a href="/book/<%=books[i].id%>/update"><button>Edit</button></a>
   </li>
   <%}%>
 </ul>

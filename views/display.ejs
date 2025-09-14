@@ -5,6 +5,10 @@
     </head>
     <body>
         <h1><%= title%></h1>
+        <% if (type=="Genre"){%>
+            <a href="/genre/<%=genre%>/update">Edit genre</a>
+        <%}%>
+        
         <%- include('list',{books})%>
     </body>
 </html>

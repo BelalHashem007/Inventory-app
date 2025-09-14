@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title><%= title%></title>
+    </head>
+    <body>
+        <h1><%= title%></h1>
+        <ul>
+            <li>Title: <%= book.title%></li>
+            <li>Author: <%= book.authors[0]%></li>
+            <li>Rating: <%= book.rating%></li>
+            <li>Description: <%= book.description%></li>
+            <li>Genres: <% for (let i=0; i<book.genres.length; i++){%>
+                <%=book.genres[i] %>
+            <%}%>
+            </li>
+        </ul>
+    </body>
+</html>
