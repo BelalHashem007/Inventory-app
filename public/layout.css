@@ -4,32 +4,126 @@
 }
 html {
   font-size: 16px;
+  height: 100%;
 }
 body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.5;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   flex-direction: column;
 }
-h1 {
-  margin: 20px 0;
+/*--------------------header-------------------*/
+.header {
+  background-color: #f1f1f1;
+  padding: 20px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.header nav > a,
+.header .genres,
+.logo {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+.header nav {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-right: 113px;
+}
+.header nav > a,
+.header nav .genres {
+  font-size: 18px;
+}
+.header .logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+.header nav > a:hover,
+.header nav .genres:hover {
+  background-color: #ddd;
+  color: black;
+}
+/*genre*/
+.genres {
+  position: relative;
+}
+.genres-wrapper {
+  display: none;
+  position: absolute;
+  max-width: 500px;
+  padding: 10px;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  left: 0;
+}
+.genres-content {
+  display: grid;
+  max-width: 500px;
+  grid-template-columns: repeat(auto-fit,100px);
+  gap: 5px;
+}
+.genres:hover .genres-wrapper {
+  display: block;
+}
+.genres a:hover {
+  background-color: #f0f0f0;
+}
+.genres a {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+}
+@media (max-width:500px){
+  .header,.header nav {
+    flex-direction: column;
+  }
+  .header nav {
+    margin: 0;
+  }
+  .genres-content,.genres-wrapper{
+    width: 100%;
+    top: 100%;
+  }
+}
+/*--------------------header-------------------*/
+.page_container{
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+h1{
+  text-align: center;
 }
 .books {
   list-style: none;
+  width: 100%;
   margin: 15px 30px;
   padding: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   gap: 20px;
-  flex-wrap: wrap;
 }
 .book {
   background-color: white;
-  padding: 20px;
+  position: relative;
+  padding: 15px;
   border: solid 1px;
   border-color: #ebebeb;
-  margin-bottom: 15px;
+  padding-bottom: 35px;
   border-radius: 25px;
   box-shadow: 0px 1px 2px 0px;
 }
@@ -37,5 +131,132 @@ h1 {
   margin-bottom: 5px;
 }
 .titlePage {
-    text-decoration: none;
+  text-decoration: none;
+}
+.delete_book,.edit_book button{
+  width: 25px;
+  height: 25x;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  border: none;
+}
+.edit_book{
+  width: 25px;
+  height: 25px;
+}
+.delete_book:hover,.edit_book button:hover {
+  cursor: pointer;
+}
+.edit_book svg {
+fill: black;
+}
+.delete_book svg{
+  fill: red;
+}
+.delete_book, .edit_book{
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+.delete_book{
+  right: 10px;
+}
+.edit_book{
+  right: 40px;
+}
+.genre_form{
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid;
+  padding: 20px;
+}
+.submit {
+  font-size: inherit;
+  padding: 7px;
+  max-width: 100px;
+  margin-top: 20px;
+  color: white;
+  background-color: #2196F3;
+  border: none;
+  border-radius: 8px;
+}
+.submit:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+.book_form,.genre_form{
+  margin:0 auto;
+  margin-top: 30px;
+}
+.book_form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 20px;
+  gap: 10px;
+  max-width: 500px;
+}
+.book_form button,.book_form input,.book_form textarea {
+  font-family: inherit;
+  font-size: 100%;
+  width: 150px;
+  padding: 0;
+  margin: 0;
+}
+.book_form input:not(input[type="checkbox"]),.book_form textarea{
+  width: 90%;
+  background: none;
+  padding: 0 10px;
+  border: 1px solid black ;
+  border-radius: 5px;
+  color: black;
+  background-color: inherit;
+}
+.book_form input:not(input[type="checkbox"]):focus,
+.book_form textarea:focus {
+  border-radius: 5px;
+}
+.book_form textarea{
+  resize: none;
+}
+.book_form button{
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.book_form input[type="checkbox"]{
+  appearance: none;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border: 1px solid gray;
+  vertical-align: -2px;
+  color: green;
+  margin-right: 3px;
+}
+.book_form input[type="checkbox"]::before {
+  content: "✔";
+  position: absolute;
+  font-size: 1.2em;
+  right: -1px;
+  top: -0.3em;
+  visibility: hidden;
+}
+.book_form [type="checkbox"]:checked::before {
+  visibility: visible;
+}
+.genres_field{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/*---------footer---------*/
+.footer {
+  width: 100%;
+  text-align: center;
+  background-color: #f1f1f1;
+  padding: 20px;
 }

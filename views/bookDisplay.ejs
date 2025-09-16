@@ -1,9 +1,10 @@
 <html>
     <head>
         <title><%= title%></title>
+        <link rel="stylesheet" href="/layout.css">
     </head>
     <body>
-        <h1><%= title%></h1>
+        <%- include('header',{genres})%>
         <ul>
             <li>Title: <%= book.title%></li>
             <li>Author: <%= book.authors[0]%></li>
@@ -14,5 +15,6 @@
             <%}%>
             </li>
         </ul>
+        <%- include('footer')%>
     </body>
 </html>

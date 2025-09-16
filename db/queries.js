@@ -69,7 +69,7 @@ async function createBook(book) {
     authorid.rows[0].id,
     bookid.rows[0].id,
   ]);
-
+  if (Array.isArray(book.genres)){
   for (let i = 0; i < book.genres.length; i++) {
     const genre = await pool.query("SELECT id FROM genre WHERE name=$1", [
       book.genres[i],
@@ -79,6 +79,7 @@ async function createBook(book) {
       bookid.rows[0].id,
     ]); //add row corresponding to the genre for the book
   }
+}
 }
 
 async function updateBook(newBook) {
@@ -93,7 +94,7 @@ async function updateBook(newBook) {
   );
 
   await pool.query("DELETE FROM book_genre WHERE bookid=$1", [newBook.id]);
-
+  if (Array.isArray(newBook.genres)){
   for (let i = 0; i < newBook.genres.length; i++) {
     const genre = await pool.query("SELECT id FROM genre WHERE name=$1", [
       newBook.genres[i],
@@ -104,6 +105,7 @@ async function updateBook(newBook) {
     ]); //add row corresponding to the genre for the book
   }
 }
+}
 
 async function createGenre(genre) {
   await pool.query("INSERT INTO genre(name) VALUES($1)", [genre]);
@@ -113,9 +115,19 @@ async function updateGenre(newGenre, id) {
   await pool.query("UPDATE genre SET name=$1 WHERE id=$2", [newGenre, id]);
 }
 
-async function getGenre(name){
-  const genre = await pool.query('SELECT * FROM genre WHERE name ILIKE $1',[`%${name}%`]);
+async function getGenre(name) {
+  const genre = await pool.query("SELECT * FROM genre WHERE name ILIKE $1", [
+    `%${name}%`,
+  ]);
   return genre.rows[0];
+}
+
+async function deleteGenre(gen) {
+  await pool.query("DELETE FROM genre WHERE name=$1", [gen]);
+}
+
+async function deleteBook(id) {
+  await pool.query("DELETE FROM book WHERE id =$1", [id]);
 }
 
 module.exports = {
@@ -128,4 +140,6 @@ module.exports = {
   createGenre,
   updateGenre,
   getGenre,
+  deleteGenre,
+  deleteBook
 };

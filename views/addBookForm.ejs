@@ -1,9 +1,10 @@
 <html>
   <head>
     <title><%= title%></title>
+    <link rel="stylesheet" href="/layout.css">
   </head>
   <body>
-    <h1><%= title%></h1>
+    <%- include('header',{genres})%>
     <% 
   let path;
   if (type === "Update") {
@@ -12,22 +13,38 @@
     path = "/book/create";
   }
     %>
-    <form action="<%=path%>" method="post">
+    <div class="page_container">
+      <h1><%= type%></h1>
+    <form action="<%=path%>" method="post" class="book_form">
+      <div>
       <label for="book_title">Title*:</label>
       <input type="text" name="title" id="book_title" required value="<%= type=='Update' ? book.title : ''%>"/>
+    </div>
+    <div>
       <label for="book_desc">Description:</label>
-      <textarea name="desc" id="book_desc"><%= type=='Update' ? book.description : ''%></textarea>
+      <textarea name="desc" id="book_desc" rows="10"><%= type=='Update' ? book.description : ''%></textarea>
+    </div>
+    <div>
       <label for="book_rating">Rating(from 0 to 5):</label>
       <input type="number" name="rating" id="book_rating" required min="0" max="5" step="0.1" value="<%= type=='Update' ? book.rating : 0%>"/>
-      <label for="book_author">Author*:</label>
-      <input type="text" name="author" id="book_author" value="<%= type=='Update' ? book.authors[0] : ''%>">
+    </div>
+    <div>
+    <label for="book_author">Author*:</label>
+      <input type="text" name="author" id="book_author" required value="<%= type=='Update' ? book.authors[0] : ''%>">
+    </div>  
+      <fieldset class="genres_field">
+        <legend>Check the genres of the book.</legend>
       <% for (let i=0; i<genres.length; i++){%>
+        
       <label ><input type="checkbox" name="genres" value="<%=genres[i].name%>" <% if (type === 'Update' && book.genres.includes(genres[i].name)) { %>
         checked
       <% } %>
     ><%=genres[i].name.toLowerCase()%></label>
         <%}%>
+      </fieldset>
       <button type="submit">Submit</button>
     </form>
+  </div>
+  <%- include('footer')%>
   </body>
 </html>

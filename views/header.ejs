@@ -1,0 +1,20 @@
+<header class="header">
+  <a href="/" class="logo">Library</a>
+  <nav class="header-middle">
+    <a href="/">Home</a>
+    <a href="/book/all">All books</a>
+    <div class="genres">
+      Genres
+      <div class="genres-wrapper">
+        <div class="genres-content">
+          <% if(locals.genres) {%> <% genres.map(gen=> {%>
+          <a href="/genre/<%=gen.name%>"><%=gen.name%></a>
+          <%});%> <%}%>
+        </div>
+      </div>
+    </div>
+
+    <a href="/book/create">Add book</a>
+    <a href="/genre/create">Add Genre</a>
+  </nav>
+</header>
