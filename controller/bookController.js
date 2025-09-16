@@ -1,12 +1,5 @@
 const query = require("../db/queries");
 
-async function getBooks(req, res, next) {
-  const genres = await query.getGenries();
-  const books = await query.getBooks();
-  if (!books) next(new Error("No books exist."));
-  res.render("display", { title: "All books", books, type: "Book",genres });
-}
-
 async function getBookById(req, res, next) {
   const genres = await query.getGenries();
   const id = req.params.id;
@@ -58,11 +51,10 @@ async function postBookUpdate(req, res) {
 async function postDeleteBook(req, res) {
   const id = req.params.id;
   await query.deleteBook(id);
-  res.redirect("/book/all");
+  res.redirect("/");
 }
 
 module.exports = {
-  getBooks,
   getBookById,
   getAddBookForm,
   postBook,

@@ -4,20 +4,29 @@
     <link rel="stylesheet" href="/layout.css" />
   </head>
   <body>
-    
     <%- include('header',{genres})%>
     <div class="page_container">
-      <h1><%= title%></h1>
-      <% if (type=="Genre"){%>
-      <a href="/genre/<%=genre%>/update">Edit genre</a>
-      <form
-        action="/genre/<%= genre%>/delete"
-        method="post"
-        onsubmit="return confirm('Are you sure you want to delete this genre?');"
-      >
-        <button type="submit">Delete genre</button>
-      </form>
-      <%}%> <%- include('list',{books})%>
+      <div class="title-genres-container">
+        <h1><%= type=="Home" ? "All books" :title%></h1>
+        <% if (type=="Genre"){%>
+        <div class="genre_settings" onclick="this.classList.toggle('open')">
+          <div class="dot1"></div>
+          <div class="dot2"></div>
+          <div class="dot3"></div>
+          <div class="genre_menu_wrapper">
+            <a href="/genre/<%=genre%>/update">Edit</a>
+            <form
+              action="/genre/<%= genre%>/delete"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this genre?');"
+            >
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+        <%}%> 
+      </div>
+      <%- include('list',{books})%>
     </div>
     <%- include('footer')%>
   </body>

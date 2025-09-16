@@ -5,16 +5,18 @@
     </head>
     <body>
         <%- include('header',{genres})%>
+        <div class="page_container">
         <ul>
-            <li>Title: <%= book.title%></li>
-            <li>Author: <%= book.authors[0]%></li>
-            <li>Rating: <%= book.rating%></li>
-            <li>Description: <%= book.description%></li>
-            <li>Genres: <% for (let i=0; i<book.genres.length; i++){%>
+            <li><strong>Title</strong>: <%= book.title%></li>
+            <li><strong>Author</strong>: <%= book.authors[0]%></li>
+            <li><strong>Rating</strong>: <%= book.rating%></li>
+            <li><strong>Description</strong>: <%= book.description%></li>
+            <li><strong>Genres</strong>: <% for (let i=0; i<book.genres.length; i++){%>
                 <%=book.genres[i] %>
             <%}%>
             </li>
         </ul>
+    </div>
         <%- include('footer')%>
     </body>
 </html>
